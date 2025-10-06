@@ -49,23 +49,31 @@ Combined both feature streams using **Concatenate()** layer before regression ou
 **Image branch:**
 - Two **convolutional blocks** with **ReLU activation** and **max pooling**.
 - **Flattened** outputs for feature extraction.
+
 **Tabular branch:**
 **Dense** layers with **Batch Normalization** and **Dropout** for regularization.
+
 **Fusion:**
 **Combined** dense layers → Batch Normalization → Dropout → Linear output neuron.
+
 **Total parameters:** ≈ 4.26 million, trainable: 4.26 million.
 ### Training Setup:
 **Optimizer:** Adam
+
 **Loss:** Mean Squared Error (MSE)
+
 **Metrics:** Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE)
+
 **Callbacks:** 
 - EarlyStopping to prevent overfitting
 - ReduceLROnPlateau for adaptive learning rate scheduling
+
 **Epochs:** 15  Batch Size: 64  Image Size: 128×128
 ### Model Evaluation	
 **MAE:**
 - Training: ~696 K USD
 - Validation: ~703 K USD
+
 **RMSE:**
 - Training: ~785K USD
 - Validation: ~796K USD
