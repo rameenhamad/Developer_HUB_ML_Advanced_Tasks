@@ -32,7 +32,9 @@ Saved optimized models using **joblib.dump()** for deployment:
 Develop a multimodal machine learning model to predict house prices by **combining image-based and tabular** (structured) data features for improved predictive accuracy.
 ### Dataset:
 **Structured Data:** Housing Sales Dataset containing attributes such as bedrooms, bathrooms, square footage, and city codes.
+
 **Image Data:** Corresponding house images from a custom dataset (socal_pics/).
+
 Each sample links tabular attributes with its image through a unique image_id.
 ### Data Preparation:
 - Added image_path column to map each record to its corresponding image file.
@@ -58,17 +60,15 @@ Combined both feature streams using **Concatenate()** layer before regression ou
 
 **Total parameters:** ≈ 4.26 million, trainable: 4.26 million.
 ### Training Setup:
-**Optimizer:** Adam
-
-**Loss:** Mean Squared Error (MSE)
-
-**Metrics:** Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE)
-
-**Callbacks:** 
-- EarlyStopping to prevent overfitting
-- ReduceLROnPlateau for adaptive learning rate scheduling
-
-**Epochs:** 15  Batch Size: 64  Image Size: 128×128
+- **Optimizer:** Adam
+- **Loss:** Mean Squared Error (MSE)
+- **Metrics:** Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE)
+- **Callbacks:** 
+  - EarlyStopping to prevent overfitting
+  - ReduceLROnPlateau for adaptive learning rate scheduling
+- **Epochs:** 15
+- **Batch Size:** 64
+- **Image Size:** 128×128
 ### Model Evaluation	
 **MAE:**
 - Training: ~696 K USD
