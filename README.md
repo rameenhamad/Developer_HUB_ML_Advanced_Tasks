@@ -80,3 +80,49 @@ Combined both feature streams using **Concatenate()** layer before regression ou
 ### Results Visualization
 Plotted **RMSE** vs **Epochs** for both **training** and **validation** phases.
 Model shows **stable convergence without overfitting** across modalities.
+
+# Task 3: Fine-Tuning BERT for News Topic Classification
+### Overview
+This task demonstrates how to fine-tune a transformer-based model (BERT) for text classification using the AG News dataset. The model is trained to classify news headlines into four categories — World, Sports, Business, and Science/Technology. The workflow follows the complete NLP fine-tuning and deployment pipeline, from data preprocessing to model serving through a web app.
+
+### Dataset
+
+**Dataset Used:** AG News (from Hugging Face Datasets)
+
+**Goal:** Classify news headlines into 4 categories using a **fine-tuned BERT model**.
+
+**Frameworks:** TensorFlow, Hugging Face Transformers, and Streamlit.
+
+### Data Preprocessing and Tokenization
+
+- The dataset is loaded using the **Hugging Face** datasets library.
+- Text data is tokenized with **BertTokenizer** (bert-base-uncased).
+- Each sentence is truncated/padded to a max length of 128 tokens.
+- Data is converted into TensorFlow datasets **(to_tf_dataset)** for training and testing.
+
+### Model Fine-Tuning
+A **TFBertForSequenceClassification** model is initialized with 4 output labels.
+**Optimizer:** Adam (learning rate = 2e-5)
+**Loss:** SparseCategoricalCrossentropy (from logits)
+**Metrics:** Accuracy
+The model is trained for 2 epochs using the tokenized dataset.
+
+### Model Evaluation
+
+After training, predictions are generated for the test dataset:
+**Accuracy:** Computed using accuracy_score
+**F1-score:** Computed using f1_score with weighted average
+Both metrics confirm the model’s effectiveness in headline **classification**.
+
+### Model Export
+The fine-tuned BERT model and tokenizer are saved using:
+- model.save_pretrained("news_classifier_tf")
+- tokenizer.save_pretrained("news_classifier_tf")
+This allows direct reuse or deployment without retraining.
+
+### Model Deployment (Streamlit App)
+A simple Streamlit web app (app.py) was developed to make real-time predictions.
+Users can input any news headline.
+The app tokenizes the input and predicts the category.
+Categories displayed: World, Sports, Business, Sci/Tech.
+This interactive demo enables live testing of the fine-tuned BERT model directly from a browser.
